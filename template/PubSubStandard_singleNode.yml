@@ -6,6 +6,7 @@ services:
     container_name: pubSubStandardSingleNode
     image: solace/solace-pubsub-standard:latest
     shm_size: 1g
+    user: '1000000'
     ulimits:
       core: 1
       nofile:
@@ -53,3 +54,7 @@ services:
       - username_admin_globalaccesslevel=admin
       - username_admin_password=admin
       - system_scaling_maxconnectioncount=100
+      # Change default privileged ports (under 1024)
+      - service_webtransport_port=1080
+      - service_webtransport_tlsport=1443
+      - service_semp_tlsport=1943
